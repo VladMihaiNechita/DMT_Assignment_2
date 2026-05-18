@@ -1,6 +1,0 @@
-/.venv/
-/Datasets/
-/__pycache__/
-/Code/__pycache__/
-*.py[cod]
-submission.csv
