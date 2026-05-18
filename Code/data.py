@@ -6,10 +6,16 @@ import gc
 
 import pandas as pd
 
-from .config import FORBIDDEN_TEST_COLUMNS, TEST_PATH, TRAIN_PATH
-from .dataset import ExpediaSearchDataset
-from .features import FeatureSpec
-from .preprocessing import ExpediaPreprocessor
+try:
+    from .config import FORBIDDEN_TEST_COLUMNS, TEST_PATH, TRAIN_PATH
+    from .dataset import ExpediaSearchDataset
+    from .features import FeatureSpec
+    from .preprocessing import ExpediaPreprocessor
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from config import FORBIDDEN_TEST_COLUMNS, TEST_PATH, TRAIN_PATH
+    from dataset import ExpediaSearchDataset
+    from features import FeatureSpec
+    from preprocessing import ExpediaPreprocessor
 
 
 def fit_train_data() -> tuple[ExpediaSearchDataset, FeatureSpec, ExpediaPreprocessor]:

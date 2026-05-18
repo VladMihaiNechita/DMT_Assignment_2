@@ -10,7 +10,10 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from .features import FeatureSpec
+try:
+    from .features import FeatureSpec
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from features import FeatureSpec
 
 try:
     from torch.nn.attention import SDPBackend, sdpa_kernel

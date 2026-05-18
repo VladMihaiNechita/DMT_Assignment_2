@@ -10,8 +10,12 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
-from .features import FeatureSpec
-from .preprocessing import make_relevance_labels
+try:
+    from .features import FeatureSpec
+    from .preprocessing import make_relevance_labels
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from features import FeatureSpec
+    from preprocessing import make_relevance_labels
 
 
 @dataclass

@@ -8,10 +8,16 @@ import numpy as np
 import pandas as pd
 import torch
 
-from .config import PREDICT_BATCH_SEARCHES, SUBMISSION_PATH
-from .dataset import ExpediaSearchDataset
-from .model import ExpediaTransformerRanker
-from .train_model import make_loader
+try:
+    from .config import PREDICT_BATCH_SEARCHES, SUBMISSION_PATH
+    from .dataset import ExpediaSearchDataset
+    from .model import ExpediaTransformerRanker
+    from .train_model import make_loader
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from config import PREDICT_BATCH_SEARCHES, SUBMISSION_PATH
+    from dataset import ExpediaSearchDataset
+    from model import ExpediaTransformerRanker
+    from train_model import make_loader
 
 
 @torch.inference_mode()

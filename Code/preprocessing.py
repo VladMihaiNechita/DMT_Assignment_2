@@ -10,24 +10,44 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from .features import (
-    COMPETITOR_COLUMNS,
-    HISTORICAL_PRIOR_KEYS,
-    MARKET_AGG_FEATURE_COLUMNS,
-    NORMALIZE_COLUMNS,
-    NONRANDOM_PRIOR_COLUMNS,
-    PRIOR_COLUMNS,
-    RESULT_BASE_COLUMNS,
-    RESULT_CATEGORICAL_COLUMNS,
-    SEARCH_RELATIVE_BASE_COLUMNS,
-    SEARCH_BASE_COLUMNS,
-    SEARCH_CATEGORICAL_COLUMNS,
-    SEARCH_NUMERIC_COLUMNS,
-    FeatureSpec,
-    get_categorical_columns,
-    get_prior_relative_columns,
-    get_result_numeric_columns,
-)
+try:
+    from .features import (
+        COMPETITOR_COLUMNS,
+        HISTORICAL_PRIOR_KEYS,
+        MARKET_AGG_FEATURE_COLUMNS,
+        NORMALIZE_COLUMNS,
+        NONRANDOM_PRIOR_COLUMNS,
+        PRIOR_COLUMNS,
+        RESULT_BASE_COLUMNS,
+        RESULT_CATEGORICAL_COLUMNS,
+        SEARCH_RELATIVE_BASE_COLUMNS,
+        SEARCH_BASE_COLUMNS,
+        SEARCH_CATEGORICAL_COLUMNS,
+        SEARCH_NUMERIC_COLUMNS,
+        FeatureSpec,
+        get_categorical_columns,
+        get_prior_relative_columns,
+        get_result_numeric_columns,
+    )
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from features import (
+        COMPETITOR_COLUMNS,
+        HISTORICAL_PRIOR_KEYS,
+        MARKET_AGG_FEATURE_COLUMNS,
+        NORMALIZE_COLUMNS,
+        NONRANDOM_PRIOR_COLUMNS,
+        PRIOR_COLUMNS,
+        RESULT_BASE_COLUMNS,
+        RESULT_CATEGORICAL_COLUMNS,
+        SEARCH_RELATIVE_BASE_COLUMNS,
+        SEARCH_BASE_COLUMNS,
+        SEARCH_CATEGORICAL_COLUMNS,
+        SEARCH_NUMERIC_COLUMNS,
+        FeatureSpec,
+        get_categorical_columns,
+        get_prior_relative_columns,
+        get_result_numeric_columns,
+    )
 
 
 def _ensure_columns(df: pd.DataFrame, columns: list[str], fill_value: Any = np.nan) -> None:

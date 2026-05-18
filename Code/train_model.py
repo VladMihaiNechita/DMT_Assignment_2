@@ -12,11 +12,18 @@ from torch import nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from .config import COMMON_MODEL_SETTINGS, NUM_WORKERS
-from .dataset import ExpediaSearchDataset, pack_collate_fn
-from .features import FeatureSpec
-from .losses import LambdaNDCGLoss, pairwise_logistic_loss
-from .model import ExpediaTransformerRanker, ModelConfig
+try:
+    from .config import COMMON_MODEL_SETTINGS, NUM_WORKERS
+    from .dataset import ExpediaSearchDataset, pack_collate_fn
+    from .features import FeatureSpec
+    from .losses import LambdaNDCGLoss, pairwise_logistic_loss
+    from .model import ExpediaTransformerRanker, ModelConfig
+except ImportError:  # pragma: no cover - supports running from inside Code/
+    from config import COMMON_MODEL_SETTINGS, NUM_WORKERS
+    from dataset import ExpediaSearchDataset, pack_collate_fn
+    from features import FeatureSpec
+    from losses import LambdaNDCGLoss, pairwise_logistic_loss
+    from model import ExpediaTransformerRanker, ModelConfig
 
 
 def seed_everything(seed: int) -> None:
